@@ -26,7 +26,7 @@ Concernant les toits plats, les critères à prendre en compte peuvent être dif
 ### Description fonctionnelle
 Le résultat que nous cherchons à obtenir devra nous permettre de définir des zones selon le type d'arbre à partir d'un algorithme python ou de QGIS.
 
-### Livrables
+### Livrables
 - 29 janvier : cahier des charges
 - 28 février : première version de nos résultats
 - 29 mars : rendu du rapport et du code
