@@ -24,8 +24,9 @@ for date in dt:
     shadows = STHardShadow(buildings, date, occludersElevationFieldname='HAUTEUR', altitudeOfShadowPlane=0, aggregate=True).run() # Compute the shadows of the buildings
     treeshadow = STTreeHardShadow(trees, date, treeHeightFieldname = 'hauteurtot', treeCrownRadiusFieldname = 'rayoncouro', altitudeOfShadowPlane=0, aggregate=True).run() # Compute the shadows of the trees
     shadows = gpd.overlay(shadows, buildings, how='difference') # Remove the buildings from the shadows geometry
-    grid['Coefficient_ombre' + str(date)] = grid.geometry.within(shadows.loc[0, 'geometry']) # Create column: equals 1 if the point is within a shadow, else 0
-    
+    grid['Buildings_ombre' + str(date)] = grid.geometry.within(shadows.loc[0, 'geometry']) # Create column: equals 1 if the point is within a building shadow, else 0
+    grid['Vegetation_ombre' + str(date)] = grid.geometry.within(treeshadow.loc[0, 'geometry']) # Create column: equals 1 if the point is within a tree shadow, else 0
+
     if int(date.strftime("%m")) < 3 or int(date.strftime("%m")) > 10: # January, February, November and December
         x = 1 # The coefficient is 1 because the sun is not that important
     elif int(date.strftime("%m")) > 4 and int(date.strftime("%m")) < 9: # Summer (between May and August)
@@ -38,7 +39,7 @@ for date in dt:
             x = 5
         else:
             x = 3
-    grid['Ombre'] = grid['Ombre'] + x*(1 - grid['Coefficient_ombre' + str(date)]) # Compute the shadow coefficient, according to the date and time. 1 - grid['Coefficient_ombre' + str(date)] equals 0 if point is in the shadows, 1 otherwise
+    grid['Ombre'] = grid['Ombre'] + x*(1 - (grid['Buildings_ombre' + str(date)] | grid['Vegetation_ombre' + str(date)])) # Compute the shadow coefficient, according to the date and time. 1 - grid['Coefficient_ombre' + str(date)] equals 0 if point is in the shadows, 1 otherwise
     print(str(date) + ' terminé') # To know how the algorithm goes
 
 grid = grid[['Ombre', 'geometry']] # Select only relevant columns
