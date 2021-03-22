@@ -10,23 +10,10 @@ buildings = gpd.read_file('./data/Buildings.shp').to_crs(epsg=2154) # Import bui
 print('Bâtiments importés')
 trees = gpd.read_file('./data/Arbres_alignement.shp').to_crs(epsg=2154) # Import trees
 print('Arbres importés')
-parcs = gpd.read_file('./data/com_parc_jardins_mask.shp').to_crs(epsg=2154) #Import public parcs
-print('Parcs importés')
-roads = gpd.read_file('./data/voirie_mask.shp').to_crs(epsg=2154) #Import roads
-print('Routes importés')
-roads['largeurcha'].fillna(2, inplace=True) #Setting a default value of 2m wide for roads without data (including paths)
-roads['geometry']=roads['geometry'].buffer(roads['largeurcha']) #Modify the geometry from streamlines to buffers
-grid = gpd.read_file('./produced_data/petite_grille.shp').to_crs(epsg=2154) # Import the grid. This grid has no points on the buildings
+grid = gpd.read_file('./produced_data/petite_grille.shp').to_crs(epsg=2154) # Import the grid. This grid has no points on the buildings, squares or roads
 print('Grille importée')
+
 grid['Ombre'] = 0 # Create a column for the shadows
-parcs_geom = unary_union(parcs['geometry'])
-roads_geom = unary_union(roads['geometry'])
-grid['parcs'] = grid.within(parcs_geom)
-grid['roads'] = grid.within(roads_geom)
-grid = grid[grid['parcs']==False]
-grid = grid[grid['roads']==False]
-print('Grille réduite')
-grid.to_file('./produced_data/petite_grille_sans_parcs')
 
 # Remove the buildings without height and trees without leaves
 buildings = buildings[~buildings['HAUTEUR'].isnull() & buildings['HAUTEUR'] > 0]
