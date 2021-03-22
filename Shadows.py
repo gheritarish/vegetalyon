@@ -25,6 +25,8 @@ grid['parcs'] = grid.within(parcs_geom)
 grid['roads'] = grid.within(roads_geom)
 grid = grid[grid['parcs']==False]
 grid = grid[grid['roads']==False]
+print('Grille réduite')
+grid.to_file('./produced_data/petite_grille_sans_parcs')
 
 # Remove the buildings without height and trees without leaves
 buildings = buildings[~buildings['HAUTEUR'].isnull() & buildings['HAUTEUR'] > 0]
