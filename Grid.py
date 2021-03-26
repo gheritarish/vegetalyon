@@ -17,6 +17,7 @@ roads = gpd.read_file('./data/voirie_mask.shp').to_crs(epsg=2154) # Import roads
 print('Routes importées')
 roads['largeurcha'].fillna(2, inplace=True) # Setting a default value of 2 meters wide for roads without data (including paths)
 roads['geometry'] = roads['geometry'].buffer(roads['largeurcha']) # Modify the geometry from streamlines to buffers
+roads.to_file('./produced_data/voirie_buffer.shp')
 
 grid = gpd.read_file('./produced_data/Grid.shp').to_crs(epsg=2154) # Import the original grid
 print('Grille importée')
