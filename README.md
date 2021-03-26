@@ -11,17 +11,16 @@ Enfin, la question de la vue aérienne n'est pas à négliger. Si des toits bét
 
 Ainsi, *VegetaLyon* s'inscrit dans le projet *DatAgora*, qui vise à analyser des données actuelles de manière croisée afin de déterminer comment placer des arbres en ville.
 
-### Objectifs
-Dans ce projet, nous pouvons définir quatre objectifs distincts.
-Le premier de ces objectifs est la définition de facteurs pertinents pour la végétation, selon le type de verdure utilisé (arbres, arbustes, potagers). En effet, toutes les essences d'arbres ne nécessitent pas la même quantité d'eau ou de soleil. De la même manière, un potager aura besoin de davantage de soleil si l'objectif est qu'il donne des légumes.
-D'autre part, comme évoqué dans le contexte de ce projet, il est intéressant de questionner l'utilité de la végétation. Est-ce que l'objectif est la beauté de la ville à l'œil, l'oxygénation de celle-ci, un autre ? Il est donc nécessaire de nous intéresser au but de la végétalisation dans la ville.
-En parallèle, nous pourrons documenter la méthode et les facteurs choisis pour définir les essences les plus intéressantes à planter. Comment ces dernières ont été choisies ? Quels sont les critères, objectifs comme subjectifs, que nous avons choisis ?
-Enfin, nous pourrons implémenter cette méthode afin d'obtenir un résultat. Implémenter une telle méthode dans `python` pourra permettre d'étendre l'étude à d'autres quartiers de la ville de Lyon, voire de ré-utiliser ce code pour d'autres villes.
+### Travail
+Notre travail est documenté dans le Wiki de cette page Github, vous y trouverez le cahier des charges qui nous a été donné, les méthodes que nous avons utilisées pour implémenter notre code.
 
-### Périmètre
-Dans le cadre de notre étude, nous allons nous intéresser au quartier de Part-Dieu de Lyon. De plus, nous allons nous intéresser à deux zones en particulier : les rues et les toits plats.
-Dans le cadre des rues, ce qui nous intéresse à prendre en compte est la largeur des voiries et la hauteur des bâtiments qui la bordent.
-Concernant les toits plats, les critères à prendre en compte peuvent être différents, tels que la hauteur des bâtiments adjacents, la hauteur du toit étudié, etc.
+L'arborescence du Wiki est listée ci-dessous :
 
-### Description fonctionnelle
-Le résultat que nous cherchons à obtenir devra nous permettre de définir des zones selon le type d'arbre à partir d'un algorithme `python` ou de QGIS.
+
+### Fichiers
+* `README.md` : Ce fichier est celui que vous êtes en train de lire, il explique comment s'y retrouver dans le GitHub.
+* `data` : Ce dossier contient les données utilisées pour le traitement des différents indicateurs.
+* `produced_data` : Ce dossier contient les données qui découlent d'un traitement. Elles peuvent être soit des données finales prêtes à être visualisées, soit des données utiles pour d'autres traitements.
+* `Grid.py` : Traitement permettant de réduire la grille de points utilisée pour les ombres. Il supprime les points qui sont dans les bâtiments, sur la chaussée et dans les parcs et jardins.
+* `Shadows.py` : Attribution de score d'ombre à la grid, qui permet de déterminer les endroits de la zone qui sont le plus au soleil, compte tenu de l'ombre des bâtiments et des arbres sur place.
+* `ToitsPlatsV2.ipynb` : 
