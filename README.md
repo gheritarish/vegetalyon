@@ -23,5 +23,5 @@ L'arborescence du Wiki est listée ci-dessous :
 * `produced_data` : Ce dossier contient les données qui découlent d'un traitement. Elles peuvent être soit des données finales prêtes à être visualisées, soit des données utiles pour d'autres traitements.
 * `Grid.py` : Traitement permettant de réduire la grille de points utilisée pour les ombres. Il supprime les points qui sont dans les bâtiments, sur la chaussée et dans les parcs et jardins.
 * `Shadows.py` : Attribution de score d'ombre à la grid, qui permet de déterminer les endroits de la zone qui sont le plus au soleil, compte tenu de l'ombre des bâtiments et des arbres sur place.
-* `ToitsPlatsV2.ipynb` : 
+* `ToitsPlatsV2.ipynb` : Implémentation de 4 indicateurs spécifiques et d'1 indicateur global afin de comparer la potentialité de végétalisation des toits dans la zone
 * `Biophilie.ipynb` : 
